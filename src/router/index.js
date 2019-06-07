@@ -2,12 +2,16 @@
 import Vue from "vue";
 import Router from "vue-router";
 
+/* Layout */
+import Layout from '@/layout'
+
 Vue.use(Router);
 
 // 公共的异步加载组件方法
 const syncImportComponent = path => {
   const asyncComponent = () => {
-    let component = import(/* webpackChunkName: "view-[request]" */ `@/views/${path}`);
+    let component =
+      import ( /* webpackChunkName: "view-[request]" */ `@/views/${path}`);
     component.catch(e => {
       console.log("加载错误");
       console.error(e);
@@ -17,16 +21,26 @@ const syncImportComponent = path => {
   return asyncComponent;
 };
 
-export const constantRoutes = [
-  {
+export const constantRoutes = [{
     path: "/",
-    redirect: "/login"
+    redirect: "/home"
   },
   {
     path: "/login",
     component: syncImportComponent("login"),
+    name: 'Lome',
     hidden: true
-  }
+  },
+  {
+    path: '/',
+    component: Layout,
+    children: [{
+      path: 'home',
+      component: syncImportComponent("home"),
+      name: 'Home',
+      meta: { title: '首页', icon: 'dashboard', affix: true }
+    }]
+  },
 ];
 
 const createRouter = () =>

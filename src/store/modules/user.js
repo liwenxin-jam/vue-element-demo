@@ -20,8 +20,6 @@ const User = {
       const { username, password } = userInfo
       return new Promise((resolve, reject) => {
         ApiUserLogin({ username: username, password: password }).then(response => {
-          console.log(response)
-          debugger
           const { data } = response
           commit('SET_TOKEN', data.token)
           setToken(data.token)

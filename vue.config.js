@@ -16,11 +16,7 @@ module.exports = {
       before(app) {
         app.get('/user/login', function(req, res) {
           res.json({
-            list: [
-              { text: '百万年薪架构师', price: 100 },
-              { text: 'web全栈架构师', price: 80 },
-              { text: 'Python爬虫', price: 60 }
-            ]
+            token: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU1OTkxMTQ2NX0.nDoWwceR0UwIrodiG2J50AJok4yCrb_WVdaiJhtXc_5UcQDarGzOifYJVKT6aEgKXZE-3FrcDs3bvqbsTCtM2A'
           });
         });
       }
@@ -49,6 +45,7 @@ module.exports = {
         // 引入全局变量样式
         data: `
           @import '@scss/variables.scss';
+          @import '@scss/mixin.scss';
         `
       }
     },

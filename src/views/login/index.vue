@@ -91,6 +91,27 @@ export default {
         }
       })
     },
+    // 获取url中query除了redirect外的参数
+    getOtherQuery(query) {
+      return Object.keys(query).reduce((acc, cur) => {
+        if (cur !== 'redirect') {
+          acc[cur] = query[cur]
+        }
+        return acc
+      }, {})
+    }
+  },
+  watch: {
+    $route: {
+      handler: function(route) {
+        const query = route.query
+        if (query) {
+          this.redirect = query.redirect
+          this.otherQuery = this.getOtherQuery(query)
+        }
+      },
+      immediate: true
+    }
   }
 };
 </script>

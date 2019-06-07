@@ -10,6 +10,22 @@ module.exports = {
   lintOnSave: false,
   // 生产环境是否生成 sourceMap 文件，打包时不生成.map文件
   productionSourceMap: false,
+  // 扩展webpack
+  configureWebpack: {
+    devServer: {
+      before(app) {
+        app.get('/user/login', function(req, res) {
+          res.json({
+            list: [
+              { text: '百万年薪架构师', price: 100 },
+              { text: 'web全栈架构师', price: 80 },
+              { text: 'Python爬虫', price: 60 }
+            ]
+          });
+        });
+      }
+    }
+  },
   // webpack配置
   chainWebpack: config => {
     config.resolve.alias
@@ -17,7 +33,8 @@ module.exports = {
       .set("@components", resolve("src/components"))
       .set("@scss", resolve("src/assets/styles"))
       .set("@img", resolve("src/assets/images"))
-      .set("@util", resolve("src/util"));
+      .set("@api", resolve("src/api"))
+      .set("@utils", resolve("src/utils"));
   },
   // css相关配置
   css: {

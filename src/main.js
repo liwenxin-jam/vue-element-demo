@@ -1,10 +1,13 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
+import store from './store';
 
+// 引入iconfont字体库
+require('@/assets/fonts/iconfont');
 // a modern alternative to CSS resets
 import "normalize.css/normalize.css";
+// 引入全局样式
 import '@scss/global.scss';
 // 全局引入element-ui 参考资料官网 https://element.eleme.cn/#/zh-CN/component/quickstart
 import Element from "element-ui";

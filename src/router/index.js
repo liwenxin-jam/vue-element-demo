@@ -23,7 +23,7 @@ const syncImportComponent = path => {
 
 export const constantRoutes = [{
     path: "/",
-    redirect: "/home"
+    redirect: "/dashboard"
   },
   {
     path: "/login",
@@ -35,10 +35,20 @@ export const constantRoutes = [{
     path: '/',
     component: Layout,
     children: [{
-      path: 'home',
+      path: 'dashboard',
       component: syncImportComponent("home"),
-      name: 'Home',
+      name: 'Dashboard',
       meta: { title: '首页', icon: 'dashboard', affix: true }
+    }]
+  }, ,
+  {
+    path: '/',
+    component: Layout,
+    children: [{
+      path: 'test',
+      component: syncImportComponent("test"),
+      name: 'test',
+      meta: { title: 'test', icon: 'dashboard', affix: true }
     }]
   },
 ];

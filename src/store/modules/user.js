@@ -100,7 +100,9 @@ const User = {
         setToken(token)
         const { roles } = await dispatch('getInfo')
         resetRouter()
-          // generate accessible routes map based on roles
+
+        debugger
+        // generate accessible routes map based on roles
         const accessRoutes = await dispatch('permission/generateRoutes', roles, { root: true })
           // dynamically add accessible routes
         router.addRoutes(accessRoutes)

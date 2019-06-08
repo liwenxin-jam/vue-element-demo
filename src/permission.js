@@ -32,6 +32,8 @@ router.beforeEach(async(to, from, next) => {
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
           const { roles } = await store.dispatch('user/getInfo')
 
+          debugger
+
           // generate accessible routes map based on roles
           const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
 
@@ -40,7 +42,6 @@ router.beforeEach(async(to, from, next) => {
 
           // hack method to ensure that addRoutes is complete
           // set the replace: true, so the navigation will not leave a history record
-          console.log(to)
           next({...to, replace: true })
         } catch (error) {
           // remove token and go to login page to re-login
@@ -53,6 +54,7 @@ router.beforeEach(async(to, from, next) => {
     }
   } else {
     /* has no token*/
+
     if (whiteList.indexOf(to.path) !== -1) {
       // in the free login whitelist, go directly
       next()

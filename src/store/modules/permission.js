@@ -53,15 +53,16 @@ const Permission = {
   actions: {
     generateRoutes({ commit }, roles) {
       return new Promise(resolve => {
-        let accessedRoutes,
-          rolesArr = roles.map(v => { return v.name });
-        if (rolesArr.includes('admin')) {
+        let accessedRoutes;
+
+        if (roles.includes('admin')) {
           accessedRoutes = asyncRoutes || []
         } else {
           accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
         }
         commit('SET_ROUTES', accessedRoutes)
         console.log(accessedRoutes)
+        debugger
         resolve(accessedRoutes)
       })
     }

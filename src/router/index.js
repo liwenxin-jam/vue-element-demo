@@ -22,9 +22,9 @@ const syncImportComponent = path => {
 };
 
 export const constantRoutes = [{
-    path: "/login",
-    component: syncImportComponent("login"),
-    name: 'Lome',
+    path: '/login',
+    component: () =>
+      import ('@/views/login/index'),
     hidden: true
   },
   {
@@ -33,37 +33,37 @@ export const constantRoutes = [{
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
-      component: syncImportComponent("home"),
+      component: () =>
+        import ('@/views/home/index'),
       name: 'Dashboard',
-      meta: { title: '首页', icon: 'dashboard', affix: true }
+      meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
     }]
   },
-  {
-    path: '/test',
-    component: Layout,
-    children: [{
-      path: 'index',
-      component: syncImportComponent("test"),
-      name: 'test',
-      meta: { title: 'test', icon: 'dashboard', affix: true, roles: ['admin'] }
-    }]
-  }
+  // {
+  //   path: '/test',
+  //   component: Layout,
+  //   children: [{
+  //     path: 'index',
+  //     component: syncImportComponent("test"),
+  //     name: 'test',
+  //     meta: { title: 'test', icon: 'dashboard', affix: true, roles: ['admin'] }
+  //   }]
+  // }
 ];
 
 /**
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
-export const asyncRoutes = []
+export const asyncRoutes = [];
 
-const createRouter = () =>
-  new Router({
-    // mode: 'history', // require service support
-    scrollBehavior: () => ({ y: 0 }),
-    routes: constantRoutes
-  });
+const createRouter = () => new Router({
+  // mode: 'history', // require service support
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRoutes
+})
 
-const router = createRouter();
+const router = createRouter()
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
@@ -71,4 +71,4 @@ export function resetRouter() {
   router.matcher = newRouter.matcher // reset router
 }
 
-export default router;
+export default router

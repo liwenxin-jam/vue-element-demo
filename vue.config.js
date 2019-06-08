@@ -21,7 +21,7 @@ module.exports = {
         });
         app.get('/user/info', function(req, res) {
           res.json({
-            data: { "name": "admin", avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532234362698&di=5d4a5555cdf01c57174f68270516fe5e&imgtype=0&src=http%3A%2F%2Fimg.bqatj.com%2Fimg%2Faf350d6710b8d2c3.jpg", "roles": [{ "id": 1, "name": "admin", "cname": "超级管理员" }] }
+            data: { "name": "admin", avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532234362698&di=5d4a5555cdf01c57174f68270516fe5e&imgtype=0&src=http%3A%2F%2Fimg.bqatj.com%2Fimg%2Faf350d6710b8d2c3.jpg", "roles": ["admin"] }
           });
         });
       }

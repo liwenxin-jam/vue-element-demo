@@ -43,6 +43,12 @@ export const constantRoutes = [{
   },
 ];
 
+/**
+ * asyncRoutes
+ * the routes that need to be dynamically loaded based on user roles
+ */
+export const asyncRoutes = []
+
 const createRouter = () =>
   new Router({
     // mode: 'history', // require service support

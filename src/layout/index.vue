@@ -2,18 +2,33 @@
   <div :class="classObj" class="app-wrapper">
 		<div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
 		<sidebar class="sidebar-container" />
-		<router-view />
+		<div :class="{hasTagsView:needTagsView}" class="main-container">
+      <div :class="{'fixed-header':fixedHeader}">
+        <navbar />
+        <tags-view v-if="needTagsView" />
+      </div>
+      <app-main />
+      <!-- <c-right-panel v-if="showSettings">
+        <settings />
+      </c-right-panel> -->
+    </div>
 	</div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import { Sidebar } from './components'
+import { AppMain, Navbar, Settings, Sidebar, TagsView } from './components';
+import ResizeMixin from './mixin/ResizeHandler';
 
 export default {
 	name: 'Layout',
+	mixins: [ResizeMixin],
   components: {
+		AppMain,
+		Navbar,
+		Settings,
     Sidebar,
+    TagsView
   },
 	computed: {
     ...mapState({

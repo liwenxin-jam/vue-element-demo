@@ -14,6 +14,8 @@ import Element from "element-ui";
 import "@scss/element-variables.scss";
 Vue.use(Element);
 
+import './permission' // permission control
+
 import components from '@utils/component';
 // 注册全局的组件
 Object.keys(components).forEach((key) => {

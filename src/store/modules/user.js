@@ -49,12 +49,12 @@ const User = {
     // get user info
     getInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
-        getInfo(state.token).then(response => {
-          const { data } = response
+        ApiGetUserInfo(state.token).then(response => {
+          const { data } = response.data;
           if (!data) {
             reject('Verification failed, please Login again.')
           }
-          const { roles, name, avatar, introduction } = data
+          const { name, avatar, roles } = data;
           // roles must be a non-empty array
           if (!roles || roles.length <= 0) {
             reject('getInfo: roles must be a non-null array!')
@@ -63,7 +63,6 @@ const User = {
           commit('SET_ROLES', roles)
           commit('SET_NAME', name)
           commit('SET_AVATAR', avatar)
-          commit('SET_INTRODUCTION', introduction)
           resolve(data)
         }).catch(error => {
           reject(error)
@@ -73,7 +72,7 @@ const User = {
     // user logout
     logout({ commit, state }) {
       return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
+        ApiUserLogout(state.token).then(() => {
           commit('SET_TOKEN', '')
           commit('SET_ROLES', [])
           removeToken()

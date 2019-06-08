@@ -22,10 +22,6 @@ const syncImportComponent = path => {
 };
 
 export const constantRoutes = [{
-    path: "/",
-    redirect: "/dashboard"
-  },
-  {
     path: "/login",
     component: syncImportComponent("login"),
     name: 'Lome',
@@ -34,23 +30,24 @@ export const constantRoutes = [{
   {
     path: '/',
     component: Layout,
+    redirect: '/dashboard',
     children: [{
       path: 'dashboard',
       component: syncImportComponent("home"),
       name: 'Dashboard',
       meta: { title: '首页', icon: 'dashboard', affix: true }
     }]
-  }, ,
+  },
   {
-    path: '/',
+    path: '/test',
     component: Layout,
     children: [{
-      path: 'test',
+      path: 'index',
       component: syncImportComponent("test"),
       name: 'test',
-      meta: { title: 'test', icon: 'dashboard', affix: true }
+      meta: { title: 'test', icon: 'dashboard', affix: true, roles: ['admin'] }
     }]
-  },
+  }
 ];
 
 /**
@@ -67,5 +64,11 @@ const createRouter = () =>
   });
 
 const router = createRouter();
+
+// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
+export function resetRouter() {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
+}
 
 export default router;

@@ -3,7 +3,7 @@ import defaultSettings from '@/settings';
 
 const { showSettings, tagsView, fixedHeader, sidebarLogo } = defaultSettings
 
-const Settings = {
+const settings = {
   namespaced: true,
   state: {
     theme: variables.theme,
@@ -31,4 +31,4 @@ const Settings = {
   }
 };
 
-export default Settings
+export default settings

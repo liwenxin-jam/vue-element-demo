@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 
-const App = {
+const app = {
   namespaced: true,
   state: {
     sidebar: {
@@ -54,4 +54,4 @@ const App = {
   }
 };
 
-export default App
+export default app

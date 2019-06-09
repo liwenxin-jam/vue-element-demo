@@ -23,8 +23,7 @@ Object.keys(components).forEach((key) => {
 Vue.config.productionTip = false
 
 new Vue({
-  el: '#app',
   router,
   store,
   render: h => h(App)
-})
+}).$mount("#app");

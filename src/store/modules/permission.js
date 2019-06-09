@@ -34,7 +34,7 @@ export function filterAsyncRoutes(routes, roles) {
   return res
 }
 
-const Permission = {
+const permission = {
   namespaced: true,
   state: {
     routes: [],
@@ -68,4 +68,4 @@ const Permission = {
   }
 };
 
-export default Permission
+export default permission

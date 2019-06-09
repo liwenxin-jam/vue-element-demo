@@ -62,7 +62,6 @@ const Permission = {
         }
         commit('SET_ROUTES', accessedRoutes)
         console.log(accessedRoutes)
-        debugger
         resolve(accessedRoutes)
       })
     }

@@ -1,5 +1,7 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
+// import modules from './modules';
+import getters from './getters'
 
 Vue.use(Vuex)
 
@@ -20,9 +22,10 @@ const store = new Vuex.Store({
   state: {
     baseUrl: process.env.VUE_APP_URL
   },
-  getters: {
-    baseUrl: state => state.baseUrl
-  },
+  getters,
+  // getters: {
+  //   baseUrl: state => state.baseUrl
+  // },
   mutations: {},
   actions: {},
   modules

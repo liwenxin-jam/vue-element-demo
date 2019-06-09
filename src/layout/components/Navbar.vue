@@ -7,15 +7,15 @@
     <div class="right-menu">
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+          <img :src="avatar" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
           <router-link to="/">
-            <el-dropdown-item>首 页</el-dropdown-item>
+            <el-dropdown-item>Dashboard</el-dropdown-item>
           </router-link>
           <el-dropdown-item divided>
-            <span style="display:block;" @click="logout">登 出</span>
+            <span style="display:block;" @click="logout">Log Out</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -28,11 +28,11 @@ import { mapGetters } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters({
-			sidebar: 'app/sidebar',
-      avatar: 'user/avatar',
-      device: 'app/device'
-		})
+    ...mapGetters([
+      'sidebar',
+      'avatar',
+      'device'
+    ])
   },
   methods: {
     toggleSideBar() {

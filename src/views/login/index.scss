@@ -3,6 +3,7 @@
   width: 100%;
   background-color: $bg;
   overflow: hidden;
+
   .login-form {
     position: relative;
     width: 520px;
@@ -11,16 +12,19 @@
     margin: 0 auto;
     overflow: hidden;
   }
+
   .tips {
     font-size: 14px;
     color: #fff;
     margin-bottom: 10px;
+
     span {
       &:first-of-type {
         margin-right: 16px;
       }
     }
   }
+
   .svg-container {
     padding: 6px 5px 6px 15px;
     color: $dark_gray;
@@ -28,8 +32,10 @@
     width: 30px;
     display: inline-block;
   }
+
   .title-container {
     position: relative;
+
     .title {
       font-size: 26px;
       color: $light_gray;
@@ -38,6 +44,7 @@
       font-weight: bold;
     }
   }
+
   .show-pwd {
     position: absolute;
     right: 10px;
@@ -47,15 +54,18 @@
     cursor: pointer;
     user-select: none;
   }
+
   .login-button {
     width: 100%;
     margin-bottom: 30px;
   }
+
   .thirdparty-button {
     position: absolute;
     right: 0;
     bottom: 6px;
   }
+
   @media only screen and (max-width: 470px) {
     .thirdparty-button {
       display: none;

@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'Vue Element Demo',
+  title: "Vue Element Demo",
 
   /**
    * @type {boolean} true | false
@@ -18,4 +18,4 @@ module.exports = {
    * @description Whether show the logo in sidebar
    */
   sidebarLogo: true
-}
+};

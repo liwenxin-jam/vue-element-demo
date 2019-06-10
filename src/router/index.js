@@ -1,15 +1,15 @@
 // 参考资料 https://router.vuejs.org/zh/
-import Vue from 'vue';
-import Router from 'vue-router';
+import Vue from "vue";
+import Router from "vue-router";
 
 Vue.use(Router);
 
 // 公共的异步加载组件
-const syncImportComponent = (path) => {
+const syncImportComponent = path => {
   const asyncComponent = () => {
-    let component = import( /* webpackChunkName: "view-[request]" */ `@/views/${path}`);
-    component.catch((e) => {
-      console.log('加载错误')
+    let component = import(/* webpackChunkName: "view-[request]" */ `@/views/${path}`);
+    component.catch(e => {
+      console.log("加载错误");
       console.error(e);
     });
     return component;
@@ -18,7 +18,7 @@ const syncImportComponent = (path) => {
 };
 
 /* Layout */
-import Layout from '@/layout'
+import Layout from "@/layout";
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -46,87 +46,96 @@ import Layout from '@/layout'
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-export const constantRoutes = [{
-    path: '/login',
-    component: () =>
-      import('@/views/login/index'),
+export const constantRoutes = [
+  {
+    path: "/login",
+    component: () => import("@/views/login/index"),
     hidden: true
   },
   {
-    path: '/',
+    path: "/",
     component: Layout,
-    redirect: '/home',
-    children: [{
-      path: 'home',
-      component: syncImportComponent('home'),
-      name: 'Home',
-      meta: { title: '首页', icon: 'dashboard', affix: true },
-      hidden: true
-    }]
-  },
-  { name: '404', path: '/404', component: syncImportComponent('404'), hidden: true },
-  {
-    path: '/test1',
-    component: Layout,
-    children: [{
-      path: 'index',
-      component: syncImportComponent('test1'),
-      name: 'Test1',
-      meta: { title: '测试页面1', icon: 'tab' }
-    }]
+    redirect: "/home",
+    children: [
+      {
+        path: "home",
+        component: syncImportComponent("home"),
+        name: "Home",
+        meta: { title: "首页", icon: "dashboard", affix: true },
+        hidden: true
+      }
+    ]
   },
   {
-    path: '/parent',
+    name: "404",
+    path: "/404",
+    component: syncImportComponent("404"),
+    hidden: true
+  },
+  {
+    path: "/test1",
     component: Layout,
-    redirect: '/parent/page1',
+    children: [
+      {
+        path: "index",
+        component: syncImportComponent("test1"),
+        name: "Test1",
+        meta: { title: "测试页面1", icon: "tab" }
+      }
+    ]
+  },
+  {
+    path: "/parent",
+    component: Layout,
+    redirect: "/parent/page1",
     alwaysShow: true, // will always show the root menu
-    name: 'Parent',
+    name: "Parent",
     // you can set roles in root nav, if do not set roles, means: this page does not require permission
     // roles: ['admin', 'editor']
-    meta: { title: '有子级的页面', icon: 'list' },
-    children: [{
-        path: 'page1',
-        component: () => import('@/views/parent/children/page1/index'),
-        name: 'Page1',
+    meta: { title: "有子级的页面", icon: "list" },
+    children: [
+      {
+        path: "page1",
+        component: () => import("@/views/parent/children/page1/index"),
+        name: "Page1",
         // or you can only set roles in sub nav
-        meta: { title: '子级页面1', icon: 'nested' }
+        meta: { title: "子级页面1", icon: "nested" }
       },
       {
-        path: 'page2',
-        component: () => import('@/views/parent/children/page2/index'),
-        name: 'Page2',
-        meta: { title: '子级页面2', icon: 'tree' }
+        path: "page2",
+        component: () => import("@/views/parent/children/page2/index"),
+        name: "Page2",
+        meta: { title: "子级页面2", icon: "tree" }
       },
       {
-        path: 'page3',
-        component: () => import('@/views/parent/children/page3/index'),
-        name: 'Page3',
-        meta: { title: '子级页面3', icon: 'table' }
+        path: "page3",
+        component: () => import("@/views/parent/children/page3/index"),
+        name: "Page3",
+        meta: { title: "子级页面3", icon: "table" }
       }
     ]
   }
-]
+];
 
 /**
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
-export const asyncRoutes = [
-  { path: '*', redirect: '/404', hidden: true }
-];
+export const asyncRoutes = [{ path: "*", redirect: "/404", hidden: true }];
 
-const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-})
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes
+  });
 
-const router = createRouter()
+const router = createRouter();
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
-  const newRouter = createRouter()
-  router.matcher = newRouter.matcher // reset router
+  const newRouter = createRouter();
+  router.matcher = newRouter.matcher; // reset router
 }
 
-export default router
+export default router;

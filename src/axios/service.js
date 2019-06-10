@@ -1,4 +1,4 @@
-import axios from './config';
+import axios from "./config";
 
 // HTTP工具类
 export default class Http {
@@ -15,9 +15,9 @@ export default class Http {
    */
   static get(req) {
     return this.request({
-      method: 'GET',
+      method: "GET",
       url: `/${req.url}`,
-      params: req.data,
+      params: req.data
     });
   }
 
@@ -29,9 +29,9 @@ export default class Http {
    */
   static put(req) {
     return this.request({
-      method: 'PUT',
+      method: "PUT",
       url: `/${req.url}`,
-      data: req.data,
+      data: req.data
     });
   }
 
@@ -43,9 +43,9 @@ export default class Http {
    */
   static post(req) {
     return this.request({
-      method: 'post',
+      method: "post",
       url: `/${req.url}`,
-      data: req.data,
+      data: req.data
     });
   }
 
@@ -57,9 +57,9 @@ export default class Http {
    */
   static delete(req) {
     return this.request({
-      method: 'DELETE',
+      method: "DELETE",
       url: `/${req.url}`,
-      params: req.data,
+      params: req.data
     });
   }
 }

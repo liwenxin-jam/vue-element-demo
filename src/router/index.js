@@ -1,7 +1,21 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+// 参考资料 https://router.vuejs.org/zh/
+import Vue from 'vue';
+import Router from 'vue-router';
 
-Vue.use(Router)
+Vue.use(Router);
+
+// 公共的异步加载组件
+const syncImportComponent = (path) => {
+  const asyncComponent = () => {
+    let component = import( /* webpackChunkName: "view-[request]" */ `@/views/${path}`);
+    component.catch((e) => {
+      console.log('加载错误')
+      console.error(e);
+    });
+    return component;
+  };
+  return asyncComponent;
+};
 
 /* Layout */
 import Layout from '@/layout'
@@ -35,20 +49,61 @@ import Layout from '@/layout'
 export const constantRoutes = [{
     path: '/login',
     component: () =>
-      import ('@/views/login/index'),
+      import('@/views/login/index'),
     hidden: true
   },
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/home',
     children: [{
-      path: 'dashboard',
-      component: () =>
-        import ('@/views/dashboard/index'),
-      name: 'Dashboard',
-      meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+      path: 'home',
+      component: syncImportComponent('home'),
+      name: 'Home',
+      meta: { title: '首页', icon: 'dashboard', affix: true },
+      hidden: true
     }]
+  },
+  { name: '404', path: '/404', component: syncImportComponent('404'), hidden: true },
+  {
+    path: '/test1',
+    component: Layout,
+    children: [{
+      path: 'index',
+      component: syncImportComponent('test1'),
+      name: 'Test1',
+      meta: { title: '测试页面1', icon: 'tab' }
+    }]
+  },
+  {
+    path: '/parent',
+    component: Layout,
+    redirect: '/parent/page1',
+    alwaysShow: true, // will always show the root menu
+    name: 'Parent',
+    // you can set roles in root nav, if do not set roles, means: this page does not require permission
+    // roles: ['admin', 'editor']
+    meta: { title: '有子级的页面', icon: 'list' },
+    children: [{
+        path: 'page1',
+        component: () => import('@/views/parent/children/page1/index'),
+        name: 'Page1',
+        // or you can only set roles in sub nav
+        meta: { title: '子级页面1', icon: 'nested' }
+      },
+      {
+        path: 'page2',
+        component: () => import('@/views/parent/children/page2/index'),
+        name: 'Page2',
+        meta: { title: '子级页面2', icon: 'tree' }
+      },
+      {
+        path: 'page3',
+        component: () => import('@/views/parent/children/page3/index'),
+        name: 'Page3',
+        meta: { title: '子级页面3', icon: 'table' }
+      }
+    ]
   }
 ]
 
@@ -56,7 +111,9 @@ export const constantRoutes = [{
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
-export const asyncRoutes = [];
+export const asyncRoutes = [
+  { path: '*', redirect: '/404', hidden: true }
+];
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support

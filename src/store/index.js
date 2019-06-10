@@ -1,3 +1,4 @@
+// 参考资料 https://vuex.vuejs.org/zh/guide/
 import Vue from 'vue'
 import Vuex from 'vuex'
 import getters from './getters'
@@ -18,16 +19,8 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
 }, {})
 
 const store = new Vuex.Store({
-  state: {
-    baseUrl: process.env.VUE_APP_URL
-  },
-  getters,
-  // getters: {
-  //   baseUrl: state => state.baseUrl
-  // },
-  mutations: {},
-  actions: {},
-  modules
+  modules,
+  getters
 })
 
 export default store

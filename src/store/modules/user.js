@@ -8,7 +8,6 @@ const user = {
     token: getToken(),
     name: '',
     avatar: '',
-    introduction: '',
     roles: []
   },
   getters: {
@@ -18,9 +17,6 @@ const user = {
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token
-    },
-    SET_INTRODUCTION: (state, introduction) => {
-      state.introduction = introduction
     },
     SET_NAME: (state, name) => {
       state.name = name
@@ -104,9 +100,9 @@ const user = {
 
         // generate accessible routes map based on roles
         const accessRoutes = await dispatch('permission/generateRoutes', roles, { root: true })
-          // dynamically add accessible routes
+        // dynamically add accessible routes
         router.addRoutes(accessRoutes)
-          // reset visited views and cached views
+        // reset visited views and cached views
         dispatch('tagsView/delAllViews', null, { root: true })
         resolve()
       })

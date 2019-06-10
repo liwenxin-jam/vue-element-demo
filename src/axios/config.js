@@ -1,3 +1,4 @@
+// 参考资料 https://github.com/axios/axios
 import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 import { MessageBox, Message } from "element-ui";
 import store from "../store";

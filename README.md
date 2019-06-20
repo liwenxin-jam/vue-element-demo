@@ -25,3 +25,12 @@ npm run serve
 ```
 npm run build
 ```
+
+### 参考资料
+ * 脚手架搭建工具[Vue-CLI](https://cli.vuejs.org/zh/)
+ * 生命周期 data watch props methods相关[Vue](https://cn.vuejs.org/index.html)
+ * 路由相关[Vue-Router](https://router.vuejs.org/zh/)
+ * 状态管理[Vuex](https://vuex.vuejs.org/zh/)
+ * 接口相关配置[axios](https://github.com/axios/axios)
+ * UI框架[Element-UI](https://element.eleme.cn/#/zh-CN/component/collapse)
+ * icon字体库[Font-Awesome](http://fontawesome.dashgame.com/)
